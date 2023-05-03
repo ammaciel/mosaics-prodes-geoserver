@@ -1,0 +1,69 @@
+version: "2"
+services:
+  postgis-compose:
+    image: mdillon/postgis
+    container_name: postgis_container
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - /home/user/Docker-Compose/PostgreSQL:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "seu_email@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "5050:80"
+    restart: always
+    depends_on:
+      - postgis-compose	
+    networks:
+      - postgres-compose-network
+
+  geoserver-compose:
+    image: terrabrasilis/geoserver:v03
+    container_name: geoserver-container
+    hostname: geoserver.publisher1
+    ports:
+      - "10190:8080"
+    networks:
+      - postgres-compose-network
+    volumes:
+      - /home/user/Docker-Compose/geoserver:/data/geoserver
+    tty: true
+    environment:
+      - "CATALINA_OPTS=-server \
+        -Djava.awt.headless=true \
+        -Dfile.encoding=UTF-8 \
+        -Xms512m -Xmx512m -Xss256m -XX:PermSize=1024m -XX:MaxPermSize=1024m \
+        -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit \
+        -XX:SoftRefLRUPolicyMSPerMB=36000 -XX:+HeapDumpOnOutOfMemoryError"
+    restart: always
+#    network_mode: host
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
+
+
+# Geoserver http://localhost:10190/geoserver/web/  -- admin - geoserver
+# PgAdmin http://0.0.0.0:5050/browser/ 		   -- seu_email@gmail.com - admin
+# Use the ip from Portainer of Postgis to connect Geoserver in database 
+# docker network create "postgres-compose-network"
+# docker network prune - case ERROR: Pool overlaps with other one on this address space
+
+# docker exec -it 05b3a3471f6f bash -- postgis id
+# find . -name pg_hba.conf
+# vim ./var/lib/postgresql/data/pg_hba.conf
+# vim ./var/lib/postgresql/data/postgresql.conf
+
+
+

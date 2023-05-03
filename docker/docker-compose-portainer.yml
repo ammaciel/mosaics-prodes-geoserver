@@ -1,0 +1,36 @@
+# docker-compose.yml 
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer_container
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/user/Docker-Compose/portainer_data:/data
+    ports:
+      - 9000:9000
+
+
+# admin SENHA 
+#sudo docker-compose -f /home/user/docker-compose-portainer.yml -p portainer up -d
+
+#sudo docker-compose -f /home/user/docker-compose-portainer.yml -p portainer down
+
+# copie/cole no browser http://localhost:9000/
+
+# case docker error
+# File "site-packages/dockerpycreds/store.py", line 25, in __init__
+#dockerpycreds.errors.InitializationError: docker-credential-secretservice not installed or not available in PATH
+# [10740] Failed to execute script docker-compose
+
+# This work for me in my Ubuntu 18:
+# sudo docker logout
+# mv ~/.docker/config.json ~/.docker/config_old.json
+# sudo docker login
+
+
