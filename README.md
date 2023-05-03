@@ -222,3 +222,13 @@ Then, open in QGIS as a WMS layer.
 
 ![QGIS](img/qgis_canvas.png)
 
+An example of the configuration of a temporal mosaic raster composed of a set of years.
+
+![QGIS](img/temp_mosaic1.png)
+
+![QGIS](img/temp_mosaic2.png)
+
+![QGIS](img/temp_mosaic3.png)
+
+![QGIS](img/temp_mosaic4.png)
+
