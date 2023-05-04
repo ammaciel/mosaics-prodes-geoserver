@@ -1,6 +1,7 @@
 #!/bin/bash
 
-INPUT_DIR="/home/user/geoserver/data/prodes/amz/temporal_mosaic"
+#INPUT_DIR="/home/user/geoserver/data/prodes/amz/temporal_mosaic"
+INPUT_DIR="/home/adeline/Docker-Compose/geoserver/data/mosaics/amz/temporal_mosaic"
 INPUT_PROPERTIES=`ls $INPUT_DIR/*.properties`
 
 echo

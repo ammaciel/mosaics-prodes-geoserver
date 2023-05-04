@@ -1,7 +1,10 @@
 #!/bin/bash
 
-INPUT_PATH="/home/user/geoserver/data/prodes/amz/mosaics_raster" # <- CHANGE ME
-OUTPUT_PATH="/home/user/geoserver/data/prodes/amz/temporal_mosaic" # <- CHANGE ME
+# INPUT_PATH="/home/user/geoserver/data/prodes/amz/mosaics_raster" # <- CHANGE ME
+# OUTPUT_PATH="/home/user/geoserver/data/prodes/amz/temporal_mosaic" # <- CHANGE ME
+
+INPUT_PATH="/home/adeline/Docker-Compose/geoserver/data/mosaics/amz/mosaics_raster" # <- CHANGE ME
+OUTPUT_PATH="/home/adeline/Docker-Compose/geoserver/data/mosaics/amz/temporal_mosaic" # <- CHANGE ME
 
 for DIR in `ls -d $INPUT_PATH/*/ | awk {'print $1'}`
 do

@@ -49,18 +49,18 @@ user@machine:~/Downloads/images_cer/im_2010$ /home/user/Downloads/mosaics-prodes
 The scripts create intermediate folders and GeoTIFF files. By default, the folder named with "year" is used as input of Image Pyramid GeoServer, move this folder to the directory of GeoServer data. After script execution, the intermediate files and folders can be removed to the trash.
 
 
-# Geoserver
+# Geoserver with temporal mosaic
 
 An [Image Pyramid](https://docs.geoserver.org/latest/en/user/tutorials/imagepyramid/imagepyramid.html) is several layers of an image rendered at various image sizes, to be shown at different zoom levels.
 
-After copying the year_folder to Geoserver repository in the server, and assuming the GeoServer image pyramid plug-in is already installed, it’s possible to create the coverage store by pointing at the directory containing the pyramid.
+After copying the "year" folder to Geoserver repository in the server, and assuming the GeoServer image pyramid plug-in is already installed, it’s possible to create the coverage store by pointing at the directory containing the pyramid.
 
 In the case of set of image pyramids, one per year, it is necessary:
 - create a database called "geoserver_mosaic" in PostgreSQL with postgis extension;
-- create a folder named "mosaics_raster" and move all year_folder into. After this, for each year_folder create new stores with Image Pyramid plugin in Geoserver with year as names of the layer;
-- in the server folder, creates a new directory named, for instance, 'temporal_mosaic' and copy all year_folder into them, for this use the  "1.copy_mosaic_each_level.sh" script with correct parameters;
-- copy the main three files to the 'temporal_mosaic' folder and subdirectories (0, 1, 2, 3, 4): datastore.properties (change before with correct parameters, i.e., name database, port, pass, user, ...), indexer.properties and timeregex.properties, to do this use the  "2.copy_properties_each_level.sh" script with correct parameters;
-- finally, create new stores with Image Pyramid plugin in Geoserver with "temporal_mosaic" as the name of the layer and the correct path.
+- create a folder named "mosaics_raster" and move all "year" folder into. After this, for each "year" folder create new stores with Image Pyramid plugin in Geoserver with year as name of the layer;
+- in the server folder, creates a new directory named, for instance, 'temporal_mosaic' and copy all "year" folder into them, for this use the  "1.copy_mosaic_each_level.sh" script with correct parameters;
+- copy the main three files to the "temporal_mosaic" folder, datastore.properties (change before with correct parameters, i.e., name database, port, pass, user, ...), indexer.properties and timeregex.properties. After this, run  "2.copy_properties_each_level.sh" script with the correct parameters, which will copy the three files for each subdirectories (0, 1, 2, 3, 4);
+- finally, create new stores with Image Pyramid plugin in Geoserver with "temporal_mosaic" as the name of the layer and the correct path, and [edit layer](#geoserver-layers-web-interface).
 - open the pgAdmin and check if the indexes table (0,1,2,3,4) were created in database "geoserver_mosaic" by Image Pyramid Geoserver
 
 The output directory is look like this:
@@ -131,7 +131,7 @@ timeregex.properties
 regex=[0-9]{4}
 ```
 
-## Geoserver Layers - Web Interface
+## Geoserver Layers Web Interface
 
 In the Layers section of the web interface, you can view and edit existing layers, add (register) a new layer, or remove (unregister) a layer. The Layers View page displays the list of layers, and the Store and Workspace in which each layer is contained. The View page also displays the layer’s status and native SRS.
 
@@ -181,6 +181,11 @@ In geoserver - Layers / Edit Layer
         2022-01-01T00:00:00.000Z
         ```
 
+# Tutorial
+
+See [TUTORIAL.rst](TUTORIAL.rst)
+
+
 # Online Resource
 
 - [Image Pyramid](https://docs.geoserver.org/stable/en/user/tutorials/imagepyramid/imagepyramid.html)
@@ -193,8 +198,6 @@ In geoserver - Layers / Edit Layer
 
 Example configure database
 
-![Database](img/database.png)
-
 ![Database](img/database_config.png)
 
 <!-- <img src="img/database.png" alt="database" title="Database" style="display: inline-block; margin: 0 auto; max-width: 700px"> -->
@@ -203,32 +206,18 @@ Run the script in the same folder with images. This process will create a log fi
 
 ![Script](img/script_execution.png)
 
-![Folder](img/folder_status.png)
+![Folder](img/folder_year2.png)
 
 
 In Geoserver, add new store using Image Pyramid Plugin and add raster data source. After this, edit layer information and view the preview.
 
-![Geoserver](img/geoserver_add_store1.png)
+![Geoserver](img/geoserver_addlayer3.png)
 
-![Geoserver](img/geoserver_add_store2.png)
+![Geoserver](img/geoserver_addlayer7.png)
 
-![Geoserver](img/geoserver_add_store3.png)
-
-![Geoserver](img/geoserver_add_store4.png)
+![Geoserver](img/geoserver_addlayer9.png)
 
 Then, open in QGIS as a WMS layer.
 
 ![QGIS](img/qgis_wms.png)
-
-![QGIS](img/qgis_canvas.png)
-
-An example of the configuration of a temporal mosaic raster composed of a set of years.
-
-![QGIS](img/temp_mosaic1.png)
-
-![QGIS](img/temp_mosaic2.png)
-
-![QGIS](img/temp_mosaic3.png)
-
-![QGIS](img/temp_mosaic4.png)
 
