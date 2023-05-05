@@ -246,11 +246,15 @@ Only to check, open the pgAdmin and check if the indexes table (0,1,2,3,4) were 
   :width: 700
   :alt: Geoserver
 
-============
-QGIS
-============
+================
+Visualization
+================
 
-Then, open in QGIS as a WMS layer.
+--------
+QGIS
+--------
+
+Visualize mosaic temporal in QGIS via a WMS layer.
 
 .. image:: img/qgis_wms.png
   :width: 700
@@ -264,4 +268,12 @@ Then, open in QGIS as a WMS layer.
   :width: 700
   :alt: QGIS
 
+------------------------
+Geoserver link
+------------------------
 
+Or accessing Geoserver link, like this example,  [`http://0.0.0.0:10190/geoserver/amazonia/wms?service=WMS&version=1.1.0&request=GetMap&layers=amazonia:temporal_mosaic&styles=&bbox=-54.876893,-1.23599921738996,-49.8668862367665,4.476636&width=673&height=768&srs=EPSG:4326&format=application/openlayers&TIME=2020`], changing the parameter TIME=YEAR by the interest year.
+
+.. image:: img/geoserver_link_preview.png
+  :width: 700
+  :alt: QGIS
