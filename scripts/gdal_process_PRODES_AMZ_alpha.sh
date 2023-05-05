@@ -1,7 +1,7 @@
 #!/bin/bash
 echo
 
-# NOTE: script to generate mosaics to No Forest for Amazon biome for the years: 1980, 2000, 2002, 2004, 2006, 2008, 2010, 2013, 2014, 2016, 2018, 2019, 2020, 2021 e 2022.
+# NOTE: This script to generate mosaics for a set of GeoTIFF format files. For example, to Amazon biome for the years: 1980, 2000, 2002, 2004, 2006, 2008, 2010, 2013, 2014, 2016, 2018, 2019, 2020, 2021 e 2022.
 # Need to define the year of the mosaic
 # Link: http://terrabrasilis.dpi.inpe.br/geoserver/prodes-amazon-nb/wms?service=WMS&version=1.1.0&request=GetMap&layers=prodes-amazon-nb%3Atemporal_mosaic_amazon_1980&bbox=-73.983162%2C-16.6619941132773%2C-43.3993356873114%2C5.269517&width=768&height=550&srs=EPSG%3A4326&format=application/openlayers&TIME=2022
 # chage parameter TIME=2022
@@ -17,7 +17,7 @@ if [ "$#" -eq 1 ]
             fi
     else
     echo "Insert a parameter with year"
-    echo "Example: [PATH_WITH_IMAGES]/gdal_process_PRODES_AMZ_NF_valpha_amz.sh 2020"
+    echo "Example: [PATH_WITH_IMAGES]/gdal_process_PRODES_AMZ_alpha.sh 2020"
     echo
     exit 1
     fi
@@ -38,16 +38,16 @@ printf $mydir
 echo
 echo "Shapefile"
 ## AMZ LEGAL
-#shapefile="/home/user/Mosaic_1986_2022_NF/shapefiles/amz_border_4326_newIBGE.shp" # <- CHANGE ME
+#shapefile="/home/user/Mosaic_Files/shapefiles/amz_border_4326_newIBGE.shp" # <- CHANGE ME
 shapefile="/home/adeline/Dropbox/github_projects/mosaics-prodes-geoserver/shapefiles/AP_limit.shp" # <- CHANGE ME
 printf $shapefile
 
 echo
-#shapefile_grid="/home/user/Mosaic_1986_2022_NF/shapefiles/grid_landsat_tm_Amz_biome_4326_newIBGE_v2.shp" # <- CHANGE ME
+#shapefile_grid="/home/user/Mosaic_Files/shapefiles/grid_landsat_tm_Amz_biome_4326_newIBGE_v2.shp" # <- CHANGE ME
 shapefile_grid="/home/adeline/Dropbox/github_projects/mosaics-prodes-geoserver/shapefiles/grid_landsat_tm_AP_4326.shp" # <-
 printf $shapefile_grid
 
-#rscript_file="/home/user/Mosaic_1986_2022_NF/scripts/script_r_cut_images_by_grid.R" # <- CHANGE ME
+#rscript_file="/home/user/Mosaic_Files/scripts/script_r_cut_images_by_grid.R" # <- CHANGE ME
 rscript_file="/home/adeline/Dropbox/github_projects/mosaics-prodes-geoserver/scripts/script_r_cut_images_by_grid.R" # <- CHANGE ME
 
 shopt -s nocasematch

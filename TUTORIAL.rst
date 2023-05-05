@@ -26,7 +26,25 @@ First, create a database called "geoserver_mosaic" and add spatial extension Pos
 Rasters processing
 ====================
 
-Download all raster files, in GeoTIFF format, to one or more years and place them in a folder identified by name_year. Then for each name_year run the shell script, located in script folder, to generate the retiles, that is a set of tiles and/or build tiled pyramid levels.
+--------------------------------------------------------------------
+Download raster files
+--------------------------------------------------------------------
+
+Download all raster files, in GeoTIFF format, to one or more years and place them in a folder identified by name_year.
+
+.. image:: img/download_images1.png
+  :width: 700
+  :alt: folder
+
+.. image:: img/download_images2.png
+  :width: 700
+  :alt: folder
+
+--------------------------------------------------------------------
+Run script to generate the retiles
+--------------------------------------------------------------------
+
+For each name_year run the shell script, located in script folder, to generate the retiles, that is a set of tiles and/or build tiled pyramid levels.
 Run the script in the same folder with images. This process will create a log file in this folder with all outputs of the execution, as can see in the pictures of the folders. Besides a set of auxiliary files. The main folder will be with the year in its name.
 This folder will be input in the Geoserver to process with Image Pyramid. For example, with a small area, Amapá state, Brazil to the 2022 year. As result, in the folder will be generated a set of auxiliary files, such as, "temp*" folders, "mosaic_*" files, and a log file with all output of the script. Repeat this process for each name_year folder. The main file generated is the folder named by "year" folder. Examples show AP_2020 and AP_2022 folders and results after the shell script run.
 
